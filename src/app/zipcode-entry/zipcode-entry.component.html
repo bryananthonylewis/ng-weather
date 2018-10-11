@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron">
+        <h2>Enter a zipcode:</h2>
+        <form #weatherForm="ngForm" (ngSubmit)="logForm(weatherForm.value); weatherForm.reset()">
+          <div class="form-group">
+            <input class="form-control" type="zip" placeholder="Ex: 95747" [(ngModel)]="zipCode" name="zip" #zip="ngModel" required>
+          </div><!-- ./ form-group -->
+          <br>
+          <button class="btn btn-primary">
+            Add location
+          </button>
+        </form>
+      </div> <!-- /.jumbotron -->
+    </div> <!-- /.col -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->

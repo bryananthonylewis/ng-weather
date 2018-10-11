@@ -1,0 +1,43 @@
+
+<div class="container mt-4" *ngFor="let f of forcasts; let i = index">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col">
+            <button (click)="removeCurrentConditions(i)" type="button" class="close align-top" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> <!-- /.col -->
+        </div>
+        <div class="row justify-content-between">
+          <div class="col">
+            <h3>Location - {{f.data.name}} - {{f.zip}}</h3>
+            <h4>Current conditions: {{f.data.weather[0].description | titlecase}}</h4>
+            <h4>Temperatures today:</h4>
+            <p>
+              Current {{ f.data.main.temp | number: '1.0-0' }}
+              - Max {{ f.data.main.temp_max | number: '1.0-0' }}
+              - Min {{ f.data.main.temp_min | number: '1.0-0' }}
+            </p>
+            <p>
+              <a [routerLink]="['/forecast', f.zip]">
+                Show 5-day forecast for {{f.data.name}}
+              </a>
+            </p>
+          </div> <!-- /.col -->
+          <div class="col text-right" [ngSwitch]="true">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Haze' || f.data.weather[0].main == 'Cloudy'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_clouds.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Cloudy'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_clouds.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Rain'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_rain.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Clear'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_clear.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Fog'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_fog.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Snow'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_snow.png?raw=true" alt="weather-icon">
+            <img *ngSwitchCase="f.data.weather[0].main == 'Thunderstorm'" src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_storm.png?raw=true" alt="weather-icon">
+            <img *ngSwitchDefault src="https://github.com/udacity/Sunshine-Version-2/blob/sunshine_master/app/src/main/res/drawable-hdpi/art_clear.png?raw=true" alt="weather-icon">
+          </div> <!-- /.col -->
+        </div> <!-- /.row -->
+      </div> <!-- /.jumbotron -->
+    </div> <!-- /.col -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->

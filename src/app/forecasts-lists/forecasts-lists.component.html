@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3 class="my-4">5-day forecast for {{weeklyForcast[0]?.data.city.name}}</h3>
+
+      <ul class="list-group mb-4">
+        <li *ngFor="let f of weeklyForcast[0]?.data.list; let i = index" class="list-group-item">
+          {{ (f.dt * 1000) | date:'EEEE, MMM d'}}:
+          {{f.weather[0].main}}
+          - Min: {{f.temp.min | number:'.0-0'}}
+          - Max: {{f.temp.max | number:'.0-0'}}
+
+          <img [src]="weatherService.getWeatherIcon(f.weather[0].id)" class="icon">
+        </li>
+      </ul>
+
+      <button class="btn btn-success mb-4" [routerLink]="'/'" >< Back to main page</button>
+    </div> <!-- /.col -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->
